@@ -1,0 +1,17 @@
+<div class="m-4 mt-8">
+    <div
+      class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2"
+    >
+      <div *ngIf="isLoading; else loadedContent">
+        <div *ngFor="let _ of [].constructor(10)">
+          <app-skeleton-repo-card></app-skeleton-repo-card>
+        </div>
+      </div>
+      <ng-template #loadedContent>
+        <div *ngFor="let repo of repos">
+          <app-repo-card [repo]="repo"></app-repo-card>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+  

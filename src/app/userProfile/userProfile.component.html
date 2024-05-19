@@ -1,0 +1,26 @@
+<app-user-form (searchUser)="getUserProfile($event)"></app-user-form>
+
+<div *ngIf="error" class="text-red-300 grid text-center text-2xl">
+  {{ error }}
+</div>
+
+<div *ngIf="isProfileLoading; else loadedContent">
+  <app-skeleton-user-card></app-skeleton-user-card>
+</div>
+
+<ng-template #loadedContent>
+  <div *ngIf="!error">
+    <app-user-card [user]="user"></app-user-card>
+  </div>
+</ng-template>
+
+<div *ngIf="repos.length > 0 && !error">
+  <app-repos-list [repos]="repos" [isLoading]="isLoading"></app-repos-list>
+  <app-pagination
+  [currentPage]="currentPage"
+  [totalPages]="totalPages"
+  (pageChange)="changePage($event)"
+  [itemsPerPage]="itemsPerPage"
+  (itemsPerPageChange)="onItemsPerPageChange($event)"
+></app-pagination>
+</div>

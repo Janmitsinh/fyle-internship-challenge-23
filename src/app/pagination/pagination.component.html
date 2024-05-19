@@ -1,0 +1,60 @@
+<div class="flex flex-col items-center gap-2 justify-center mt-4">
+  <div class="flex items-center">
+    <button
+      class="px-2 py-1 rounded-md bg-blue-500 disabled:bg-gray-100/30 disabled:cursor-not-allowed text-white"
+      (click)="prevPage()"
+      [disabled]="currentPage === 1"
+    >
+      Prev
+    </button>
+
+    <ng-container *ngFor="let num of displayedPageNumbers">
+      <button
+        class="px-2 py-1 rounded-md bg-white text-black mx-1"
+        [class.bg-gray-500]="currentPage === num"
+        (click)="setPage(num)"
+      >
+        {{ num }}
+      </button>
+      <button
+      class="px-2 py-1 rounded-md bg-white text-black mx-1"
+      [class.bg-gray-500]="currentPage === num"
+      (click)="setPage(num)"
+    >
+      {{ num +1 }}
+    </button>
+    </ng-container>
+
+    <span *ngIf="totalPages > 5 && displayedPageNumbers[displayedPageNumbers.length - 1] < totalPages" class="mx-1">...</span>
+
+    <button
+      class="px-2 py-1 rounded-md bg-blue-500 text-white mx-1"
+      *ngIf="totalPages > 5 && displayedPageNumbers[displayedPageNumbers.length - 1] < totalPages"
+      (click)="setPage(totalPages)"
+    >
+      {{ totalPages }}
+    </button>
+
+    <button
+      class="px-2 py-1 cursor-pointer rounded-md bg-blue-500 text-white"
+      (click)="nextPage()"
+      [disabled]="currentPage === totalPages"
+    >
+      Next
+    </button>
+  </div>
+
+  <div class="flex items-center mt-2">
+    <label for="itemsPerPage" class="mr-2">Items per page:</label>
+    <select
+      id="itemsPerPage"
+      class="px-2 py-1 rounded-md bg-gray-200 text-gray-800"
+      [(ngModel)]="itemsPerPage"
+      (change)="changeItemsPerPage(itemsPerPage)"
+    >
+      <option *ngFor="let option of itemsPerPageOptions" [value]="option">
+        {{ option }}
+      </option>
+    </select>
+  </div>
+</div>

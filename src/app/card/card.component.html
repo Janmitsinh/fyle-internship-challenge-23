@@ -1,0 +1,17 @@
+<div
+  class="bg-stone-700 b border-solid border-white h-full flex flex-col justify-between rounded-lg shadow-md overflow-hidden">
+  <div class="p-4">
+    <div class="font-bold text-xl mb-2 text-neutral-100">
+      <a href="{{ repo.htmlUrl }}" class="hover:bg-blue-700, text-white font-bold py-2 px-4" target="_blank">
+        {{ repo.name }}</a>
+    </div>
+    <p class="text-neutral-400">{{ repo.description }}</p>
+  </div>
+  <ng-container *ngFor="let topic of repo.topics.slice(0, 2)">
+    <span class="inline-block rounded-full px-3 py-1 text-sm font-semibold text-neutral-200 mr-2 mb-2">{{
+      topic }}</span>
+  </ng-container>
+  <span
+    class="inline-block rounded-full px-3 py-1 text-sm font-semibold text-neutral-200 mr-2 mb-2">Stars:
+    {{ repo.stargazersCount }}</span>
+</div>
